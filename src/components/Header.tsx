@@ -22,7 +22,7 @@ export default function Header() {
                                 isActive ? 'text-orange-500 uppercase font-bold' : 'text-white uppercase font-bold'
                             }
                         >
-                            favoritos
+                            favorito
                         </NavLink>
                     </nav>
 
