@@ -37,12 +37,12 @@ export default function Modal() {
                         as={Fragment}
                         enter="ease-out duration-300"
                         enterFrom="opacity-0"
-                        enterTo="opacity-100"
+                        enterTo="opacity-30"
                         leave="ease-in duration-200"
-                        leaveFrom="opacity-100"
+                        leaveFrom="opacity-30"
                         leaveTo="opacity-0"
                     >
-                        <div className="fixed inset-0 bg-black bg-opacity-70" />
+                        <div className="fixed inset-0 bg-opacity-70" />
                     </Transition.Child>
 
                     <div className="fixed inset-0 overflow-y-auto">
@@ -84,7 +84,10 @@ export default function Modal() {
                                          <button
                                         type='button'
                                         className='w-full rounded bg-orange-600 p-3 font-bold uppercase text-white shadow hover:bg-orange-500'
-                                        onClick={()=>handleClickFavorite(selectRecipe)}
+                                        onClick={()=>{
+                                            handleClickFavorite(selectRecipe)
+                                            closeModal()
+                                        }}
                                         >{favoriteExists(selectRecipe.idDrink) ? 'Eliminar Favorito' : 'Agregar a favorito'}</button>
                                     </div>
                                 </Dialog.Panel>
