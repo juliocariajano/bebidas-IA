@@ -23,7 +23,7 @@ export const createFavoritesSlice: StateCreator<FavoriteSliceType> = (
       //II Forma
       set((state) => ({
         favorites: [...state.favorites, recipe],
-      }));
+    }));
       //I Forma
       // set({
       // favorites:[...get().favorites, recipe]
