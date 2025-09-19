@@ -2,8 +2,9 @@ import axios from "axios";
 import {
   CategoriesAPIResponseSchema,
   DrinksAPIResponse,
+  RecipeAPIResponseSchema
 } from "../utils/recipes-schema";
-import type { SearchFilter } from "../types";
+import type { Drink, SearchFilter } from "../types";
 
 export async function getCategories() {
   const url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
@@ -15,9 +16,6 @@ export async function getCategories() {
   }
 }
 export async function getRecipes(filters: SearchFilter) {
-  console.log(filters.category, "categoria");
-  console.log(filters.ingredient, "ingredient");
-
   const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${filters.category}&i=${filters.ingredient}`;
 
   const { data } = await axios(url);
@@ -26,3 +24,12 @@ export async function getRecipes(filters: SearchFilter) {
     return result.data;
   }
 }
+
+
+export async function getRecipesById(id:Drink['idDrink']){
+  const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
+  const {data} = await axios (url);
+  const result = RecipeAPIResponseSchema.safeParse(data.drinks[0])
+  if(result.success) return result.data
+}
+
